@@ -12,4 +12,20 @@ $(document).ready(function () {
     statusHTML += '</ul>';
     $('#employeeList').html(statusHTML)
   }); // end getJSON
+
+  $.getJSON('../data/rooms.json', function (response) {
+    var roomsHTML = '<ul class="rooms">';
+
+    $.each(response, function (index, room) {
+      if (room.available === true) {
+        roomsHTML += '<li class="empty">';
+      } else {
+        roomsHTML += '<li class="full">';
+      }
+      roomsHTML += room.room + '</li>';
+    }); // end each loop
+
+    roomsHTML += '</ul>';
+    $('#roomList').html(roomsHTML);
+  }); // end getJSON
 }); // end ready
